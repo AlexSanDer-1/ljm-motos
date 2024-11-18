@@ -5,6 +5,7 @@ create table locacao(
        nivel VARCHAR(255) NOT NULL,
        coluna VARCHAR(255) NOT NULL,
        limite_armazenamento INT NOT NULL,
-       quantidade INT NOT NULL,
-       excesso INT
+       quantidade INT,
+       produto_id BIGINT,
+       FOREIGN KEY (produto_id) REFERENCES produtos(id) ON DELETE CASCADE
 );

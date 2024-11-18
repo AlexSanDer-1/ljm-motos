@@ -9,20 +9,24 @@ import lombok.*;
 @EqualsAndHashCode(of = "id")
 @Getter
 @Setter
-@Table(name = "precosVendaProdutos")
-@Entity(name =  "PrecoVendaProduto")
-public class Preco{
+@Table(name = "preco_Produtos")
+@Entity(name =  "PrecoProduto")
+public class PrecoProduto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private double custoProduto;
-    private double ICMS;
+    private double icms;
     private double margemDeLucro;
+    private  double precoFinal;
     @ManyToOne
-    @OneToMany(mappedBy = "preco",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @JoinColumn(name = "produto_id", nullable = false)
     private Produto produto;
-
-
+    public PrecoProduto( double precoFinal,double icms, double margemDeLucro, Produto produto) {
+        this.icms = icms;
+        this.margemDeLucro = margemDeLucro;
+        this.produto = produto;
+        this.precoFinal = precoFinal;
+    }
 
 
 }

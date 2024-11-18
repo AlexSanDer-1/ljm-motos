@@ -1,12 +1,10 @@
-package br.com.alura.LjmMotos.dto.produto;
+package br.com.alura.LjmMotos.dto.locacao;
 
-import br.com.alura.LjmMotos.dto.LocacaoDtoId;
 import br.com.alura.LjmMotos.dto.produto.ProdutoDtoId;
-import br.com.alura.LjmMotos.modelo.locacao.Locacao;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
-public record LocacaoExcessoDto(@NotNull Long  produtoId,Long locacaoId,@NotBlank String partilheira,
+public record LocacaoExcessoDto(@NotNull ProdutoDtoId produto, LocacaoDtoId locacao, @NotBlank String partilheira,
                                 @NotBlank String direcaoPartilheira, @NotBlank String nivel, @NotBlank String coluna,
                                 @NotNull Integer limiteArmazenamento, Integer quantidade) {
 }

@@ -1,2 +1,5 @@
-package br.com.alura.LjmMotos.infra;public class Validar {
+package br.com.alura.LjmMotos.infra;
+
+public interface Validar<T>{
+      void validar(T dto);
 }

@@ -1,6 +1,6 @@
-package br.com.alura.LjmMotos.funcionalidades;
+package br.com.alura.LjmMotos.funcionalidades.funcionario;
 
-import br.com.alura.LjmMotos.modelo.Funcionario;
+import br.com.alura.LjmMotos.modelo.funcionario.Funcionario;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;

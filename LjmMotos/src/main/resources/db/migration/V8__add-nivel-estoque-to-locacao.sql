@@ -1,1 +1,1 @@
-ALTER TABLE locacao ADD COLUM nivel_estoque
+ALTER TABLE locacao ADD COLUMN nivel_estoque ENUM("ANDAR_CIMA","ANDAR_BAIXO") NOT NULL;

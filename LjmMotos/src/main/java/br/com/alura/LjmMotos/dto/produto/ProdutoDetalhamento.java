@@ -1,4 +1,4 @@
-package br.com.alura.LjmMotos.dto;
+package br.com.alura.LjmMotos.dto.produto;
 
 import br.com.alura.LjmMotos.dto.produto.ProdutoDto;
 import br.com.alura.LjmMotos.modelo.produto.Produto;

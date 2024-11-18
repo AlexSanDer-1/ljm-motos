@@ -1,6 +1,6 @@
-package br.com.alura.LjmMotos.modelo;
+package br.com.alura.LjmMotos.modelo.funcionario;
 
-import br.com.alura.LjmMotos.dto.FuncionariosDTO;
+import br.com.alura.LjmMotos.dto.funcionario.FuncionariosDTO;
 import jakarta.persistence.*;
 import lombok.*;
 

@@ -1,6 +1,7 @@
-package br.com.alura.LjmMotos.modelo.produto;
+package br.com.alura.LjmMotos.modelo.locacao;
 
-import br.com.alura.LjmMotos.dto.produto.LocacaoDto;
+import br.com.alura.LjmMotos.dto.locacao.LocacaoDto;
+import br.com.alura.LjmMotos.modelo.produto.Produto;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -16,19 +17,20 @@ public class Locacao {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String partilheira;
+    private Integer partilheira;
     private String direcaoPartilheira;
     private String nivel;
-    private String coluna;
+    private Integer coluna;
     private Integer limiteArmazenamento;
     private Integer quantidade;
-    private Integer excesso;
+    @Enumerated(EnumType.STRING)
+    private NivelEstoque nivelEstoque;
     @ManyToOne
     @JoinColumn(name = "produto_id", nullable = false)
     private Produto produto;
 
 
-    public Locacao(Produto produto,LocacaoDto dto) {
+    public Locacao(LocacaoDto dto, Produto produto) {
         this.partilheira = dto.partilheira();
         this.direcaoPartilheira = dto.direcaoPartilheira();
         this.nivel = dto.nivel();
@@ -36,4 +38,6 @@ public class Locacao {
         this.limiteArmazenamento = dto.limiteArmazenamento();
         this.quantidade = dto.quantidade();
     }
+
+
 }

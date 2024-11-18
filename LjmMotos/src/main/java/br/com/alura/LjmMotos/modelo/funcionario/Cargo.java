@@ -1,4 +1,4 @@
-package br.com.alura.LjmMotos.modelo;
+package br.com.alura.LjmMotos.modelo.funcionario;
 
 public enum Cargo{
     ESTOQUE,

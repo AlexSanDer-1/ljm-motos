@@ -1,6 +1,6 @@
-package br.com.alura.LjmMotos.funcionalidades;
+package br.com.alura.LjmMotos.funcionalidades.funcionario;
 
-import br.com.alura.LjmMotos.dto.FuncionariosDTO;
+import br.com.alura.LjmMotos.dto.funcionario.FuncionariosDTO;
 import br.com.alura.LjmMotos.infra.ValidacaoException;
 import br.com.alura.LjmMotos.repository.FuncionarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;

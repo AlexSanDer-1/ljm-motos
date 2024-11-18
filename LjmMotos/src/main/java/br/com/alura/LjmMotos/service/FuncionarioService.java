@@ -1,14 +1,11 @@
 package br.com.alura.LjmMotos.service;
 
-import br.com.alura.LjmMotos.dto.DadosAtualizacaoFuncionario;
-import br.com.alura.LjmMotos.dto.FuncionariosDTO;
-import br.com.alura.LjmMotos.dto.FuncionariosDetalhamento;
-import br.com.alura.LjmMotos.funcionalidades.AtualizarDadosFuncionario;
-import br.com.alura.LjmMotos.funcionalidades.CalculoSalario;
-import br.com.alura.LjmMotos.funcionalidades.ValidacaoCadastroFuncionario;
-import br.com.alura.LjmMotos.funcionalidades.ValidarDemissao;
-import br.com.alura.LjmMotos.infra.ValidacaoException;
-import br.com.alura.LjmMotos.modelo.Funcionario;
+import br.com.alura.LjmMotos.dto.funcionario.DadosAtualizacaoFuncionario;
+import br.com.alura.LjmMotos.dto.funcionario.FuncionarioDemissaoDTO;
+import br.com.alura.LjmMotos.dto.funcionario.FuncionariosDTO;
+import br.com.alura.LjmMotos.dto.funcionario.FuncionariosDetalhamento;
+import br.com.alura.LjmMotos.funcionalidades.funcionario.*;
+import br.com.alura.LjmMotos.modelo.funcionario.Funcionario;
 import br.com.alura.LjmMotos.repository.FuncionarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -27,16 +24,20 @@ public class FuncionarioService {
     @Autowired
     private ValidacaoCadastroFuncionario validarCadastro;
     @Autowired
-    private  ValidarDemissao validarDemissao;
+    private ValidarDemissao validarDemissao;
+    @Autowired
+    private VerificarDataEmissao verificar;
+    @Autowired
+    private CarregarFuncionario carregar;
 
     public Funcionario cadastrar(FuncionariosDTO dto) {
 
         Funcionario funcionario = new Funcionario(dto);
 
         validarCadastro.validar(dto);
-
-        calculoSalario.validar(funcionario);
-      return   repository.save(funcionario);
+        verificar.verificarData(funcionario);
+        calculoSalario.calcular(funcionario);
+        return repository.save(funcionario);
     }
 
     public Page<FuncionariosDetalhamento> listarFuncionario(Pageable pageable) {
@@ -49,27 +50,20 @@ public class FuncionarioService {
                 .map(FuncionariosDetalhamento::new);
     }
 
-    public Funcionario atualizar(Long id, DadosAtualizacaoFuncionario dados) {
-        Funcionario funcionario = repository.findById(id)
-                .orElseThrow(() -> new ValidacaoException("Funcionario não encontrado"));
-        atualizarDados.validar(funcionario,dados);
-      return   repository.save(funcionario);
+    public Funcionario atualizar(DadosAtualizacaoFuncionario dto) {
+        Funcionario funcionario = atualizarDados.atualizarFuncionario(dto);
+        return repository.save(funcionario);
     }
 
-    public void demitir(Long id) {
-        Funcionario funcionario = repository.findById(id)
-                .orElseThrow(() -> new ValidacaoException("Funcionario não encontrado"));
+    public void demitir(FuncionarioDemissaoDTO dto) {
 
-        validarDemissao.validar(funcionario);
+        validarDemissao.validar(dto);
 
     }
 
-    public Funcionario detalhar(Long id){
-        Funcionario funcionario = repository.findById(id)
-                .orElseThrow(() -> new ValidacaoException("Funcionario não encontrado"));
-        return  funcionario;
+    public Funcionario detalhar(Long id) {
+        Funcionario funcionario = carregar.carregar(id);
+        return funcionario;
     }
-
-
 
 }

@@ -1,2 +1,7 @@
-package br.com.alura.LjmMotos.modelo;public class tipoValor {
+package br.com.alura.LjmMotos.modelo.produto;
+
+public enum TipoValor {
+
+    ATACADO,
+    VAREJO;
 }

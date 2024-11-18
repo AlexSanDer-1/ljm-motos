@@ -1,7 +1,7 @@
-package br.com.alura.LjmMotos.funcionalidades;
+package br.com.alura.LjmMotos.funcionalidades.funcionario;
 
-import br.com.alura.LjmMotos.dto.DadosAtualizacaoFuncionario;
-import br.com.alura.LjmMotos.modelo.Funcionario;
+import br.com.alura.LjmMotos.dto.funcionario.DadosAtualizacaoFuncionario;
+import br.com.alura.LjmMotos.modelo.funcionario.Funcionario;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -14,7 +14,7 @@ public class AtualizarDadosFuncionario{
     @Autowired
     private CarregarFuncionario carregar;
     public Funcionario atualizarFuncionario(DadosAtualizacaoFuncionario dto) {
-         Funcionario funcionario = carregar.carregarFuncionario(dto.id());
+         Funcionario funcionario = carregar.carregar(dto.id());
         if (dto.nome() != null) {
             funcionario.setNome(dto.nome());
         }
