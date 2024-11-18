@@ -1,0 +1,1 @@
+ALTER TABLE locacao ADD COLUM nivel_estoque
